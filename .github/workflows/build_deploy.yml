@@ -1,0 +1,27 @@
+name: Test React App
+on: 
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+      - 'hotfix-*'
+      - 'feature/**'
+    paths-ignore: 
+      - '.github/workflows/*'
+  pull_request:
+    types:
+      - opened
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code
+        uses: actions/checkout@v6
+      - name: Install Node v24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Install
+        run: npm install
+      - name: Test 
+        run: npm run test
