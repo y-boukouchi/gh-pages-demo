@@ -1,0 +1,22 @@
+name: Docker React App
+permissions: 
+  contents: write
+on: 
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: 
+      image: node:24
+    steps:
+      - name: Code
+        uses: actions/checkout@v6
+      #- name: Install Node v24
+      #  uses: actions/setup-node@v6
+      #  with:
+      #    node-version: 24
+      - name: Install
+        run: npm install
+      - name: test
+        run : npm run test
+  
